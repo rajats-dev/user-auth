@@ -12,3 +12,11 @@ export const companyInfo = {
   Phone: "XXXXXXXXX09",
   Email: "XXXXXX@gmail.com",
 };
+
+export const professions = [
+  "Engineer",
+  "Doctor",
+  "Teacher",
+  "Designer",
+  "Developer",
+];

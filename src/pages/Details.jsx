@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
-import { companyInfo, movieData } from "../data";
+import React, { Suspense, useEffect, useState } from "react";
+import { movieData } from "../data";
+import MovieUi from "../components/MovieUi";
+import Loader from "../components/Loader";
 
 const Details = () => {
+  const [responseData, setResponseData] = useState([]);
   const data = movieData;
-  const info = companyInfo;
 
   const postJsonObj = async () => {
     try {
@@ -15,8 +17,8 @@ const Details = () => {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-      console.log("Success:", result);
+      const res = await response.json();
+      setResponseData(res.result);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -24,26 +26,10 @@ const Details = () => {
 
   useEffect(() => {
     postJsonObj();
-  }, [data]);
+  }, []);
 
   return (
-    <div className="flex justify-center m-4">
-      <ul className="flex flex-col gap-3">
-        <h1 className="text-2xl font-bold">Company Info</h1>
-        <li className="flex">
-          <p className="font-bold">{"Company"}</p>: {info.Company}
-        </li>
-        <li className="flex">
-          <p className="font-bold"> {"Address"}</p> : {info.Address}
-        </li>
-        <li className="flex">
-          <p className="font-bold"> {"Phone"}</p> : {info.Phone}
-        </li>
-        <li className="flex">
-          <p className="font-bold">{"Email"} </p>: {info.Email}
-        </li>
-      </ul>
-    </div>
+    <>{responseData.length ? <MovieUi resData={responseData} /> : <Loader />}</>
   );
 };
 

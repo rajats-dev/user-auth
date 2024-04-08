@@ -32,7 +32,7 @@ const Login = () => {
       parseUserObj.email === formValue.email &&
       parseUserObj.password === formValue.password
     ) {
-      navigate("/details");
+      navigate("/moviesdetails");
     } else {
       setAlerts((prev) => {
         return { ...prev, error: "Invalid Credentials." };
@@ -51,7 +51,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex justify-center m-10">
+      <div className="flex justify-center m-6">
         <form
           onSubmit={onhandleSubmit}
           className="flex flex-col justify-center bg-slate-200 w-96 rounded-lg m-5 p-7"

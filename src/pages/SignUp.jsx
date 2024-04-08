@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MdError } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { professions } from "../data";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -14,13 +15,14 @@ const SignUp = () => {
 
   const onhandleSubmit = (e) => {
     e.preventDefault();
-    const { username, email, password, phonenumber } = formValue;
+    const { username, email, password, phonenumber, profession } = formValue;
 
     if (
       username === "" ||
       email === "" ||
       password === "" ||
-      phonenumber === ""
+      phonenumber === "" ||
+      !profession
     ) {
       setAlerts("Please fill all the details.");
       return;
@@ -40,7 +42,7 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="flex justify-center m-10">
+      <div className="flex justify-center m-6">
         <form
           onSubmit={onhandleSubmit}
           className="flex flex-col justify-center bg-slate-200 w-96 rounded-lg m-5 p-7"
@@ -93,8 +95,21 @@ const SignUp = () => {
               size={38}
               onChange={onhandleChange}
               placeholder="Enter phone number"
-              className="p-1 rounded-lg"
+              className="p-1 rounded-lg my-2"
             />
+          </label>
+          <label>
+            Profession:{" "}
+            <select
+              onChange={onhandleChange}
+              name="profession"
+              className="rounded-lg m-2"
+            >
+              <option hidden>Choose</option>
+              {professions.map((value, i) => {
+                return <option key={i}>{value}</option>;
+              })}
+            </select>
           </label>
           <button
             type="submit"

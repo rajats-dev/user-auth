@@ -1,6 +1,7 @@
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Details from "./pages/Details";
+import CompanyInfo from "./components/CompanyInfo";
 import {
   Link,
   Outlet,
@@ -15,11 +16,18 @@ function App() {
         <Link to="/" className="mx-2 p-2 bg-red-500 text-white rounded-lg">
           SignUp
         </Link>
+
         <Link
           to="/login"
           className="mx-2 p-2 bg-green-500 text-white rounded-lg"
         >
           LogIn
+        </Link>
+        <Link
+          to="/moviesdetails"
+          className="mx-2 p-2 bg-orange-500 text-white rounded-lg"
+        >
+          Movies
         </Link>
         <Link
           to="/companyinfo"
@@ -46,12 +54,12 @@ function App() {
           element: <Login />,
         },
         {
-          path: "/details",
+          path: "/moviesdetails",
           element: <Details />,
         },
         {
           path: "/companyinfo",
-          element: <Details />,
+          element: <CompanyInfo />,
         },
       ],
     },
